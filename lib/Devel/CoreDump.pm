@@ -2,6 +2,7 @@ use strict;
 use warnings;
 
 package Devel::CoreDump;
+# ABSTRACT: create core dumps of the running perl interpreter, without terminating
 
 use XSLoader;
 use IO::Handle;
@@ -11,12 +12,9 @@ our $VERSION = '0.03';
 XSLoader::load(__PACKAGE__, $VERSION);
 
 1;
-
 __END__
 
-=head1 NAME
-
-Devel::CoreDump - create core dumps of the running perl interpreter, without terminating
+=pod
 
 =head1 SYNOPSIS
 
@@ -58,16 +56,7 @@ Writes the core file to disk. This is a convenience method wrapping
 C<get()>. If a core file could not be generated for any reason,
 an exception is thrown.
 
-=head1 AUTHOR
-
-Florian Ragwitz E<lt>rafl@debian.orgE<gt>
-
 =head1 COPYRIGHT AND LICENSE
-
-Copyright (c) 2008  Florian Ragwitz
-
-This software is distributed under the terms of the BSD License
-
 
 Parts of this module are taken from Google's coredumper library.
 L<http://code.google.com/p/google-coredumper/>.

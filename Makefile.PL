@@ -1,12 +1,10 @@
 use strict;
 use warnings;
-use inc::Module::Install;
 
-name 'Devel-CoreDump';
-all_from 'lib/Devel/CoreDump.pm';
+use lib 'inc';
+use ExtUtils::MakeMaker::Dist::Zilla::Develop;
 
-extra_tests;
-
+# keep this code consistent with the [MakeMaker::Awesome] arguments in dist.ini
 my @OBJECT = map { "${_}.o" } qw(
     CoreDump
     src/coredumper
@@ -15,13 +13,16 @@ my @OBJECT = map { "${_}.o" } qw(
     src/linuxthreads
 );
 
-makemaker_args(
+WriteMakefile(
+    NAME => 'Devel::CoreDump',
+    VERSION_FROM => 'lib/Devel/CoreDump.pm',
+    INSTALLMAN1DIR => 'none',
+    INSTALLMAN3DIR => 'none',
+    NORECURS => 1,
     INC    => '-Isrc',
     clean  => { FILES => join(q{ }, @OBJECT) },
     OBJECT => join(q{ }, @OBJECT),
 );
-
-WriteAll;
 
 package MY;
 
@@ -35,4 +36,5 @@ sub const_cccmd {
     return $orig;
 }
 
-1;
+use Devel::PPPort 3.36;
+Devel::PPPort::WriteFile();

@@ -1,3 +1,8 @@
+Revision history for Devel-CoreDump
+
+{{$NEXT}}
+  * modernized packaging and tooling (and updated ppport.h)
+
 0.02      2008-11-29 14:13:06Z
   * Use ppport.h.
 
